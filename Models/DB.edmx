@@ -1,0 +1,986 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="posModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="brand" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="card_number" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="birthdate" Type="date" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telephone" Type="varchar" MaxLength="10" />
+          <Property Name="hired_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title_id" Type="int" Nullable="false" />
+          <Property Name="shift_id" Type="int" Nullable="false" />
+          <Property Name="status_id" Type="int" Nullable="false" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pay_status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pay_type" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="brand_id" Type="int" Nullable="false" />
+          <Property Name="department_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product_department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="department_name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sale_datetime" Type="datetime" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sale_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sale_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="payment_type_id" Type="int" Nullable="false" />
+          <Property Name="payment_status_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shift">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="in_time" Type="time" Precision="5" Nullable="false" />
+          <Property Name="out_time" Type="time" Precision="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="user_type_id" Type="int" Nullable="false" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usr_type" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_employee_detail_employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee_detail" Type="Self.Employee_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employee_detail">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employee_details_employee_statuses">
+          <End Role="Employee_status" Type="Self.Employee_status" Multiplicity="1" />
+          <End Role="Employee_detail" Type="Self.Employee_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employee_detail">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employee_details_shifts">
+          <End Role="Shift" Type="Self.Shift" Multiplicity="1" />
+          <End Role="Employee_detail" Type="Self.Employee_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employee_detail">
+              <PropertyRef Name="shift_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employee_details_titles">
+          <End Role="Title" Type="Self.Title" Multiplicity="1" />
+          <End Role="Employee_detail" Type="Self.Employee_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Title">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employee_detail">
+              <PropertyRef Name="title_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inventory_products">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_brands">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="brand_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_product_departments">
+          <End Role="Product_department" Type="Self.Product_department" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_department">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sale_details_payment_statuses">
+          <End Role="Payment_status" Type="Self.Payment_status" Multiplicity="1" />
+          <End Role="Sale_detail" Type="Self.Sale_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sale_detail">
+              <PropertyRef Name="payment_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sale_details_payment_types">
+          <End Role="Payment_type" Type="Self.Payment_type" Multiplicity="1" />
+          <End Role="Sale_detail" Type="Self.Sale_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sale_detail">
+              <PropertyRef Name="payment_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sale_details_products">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Sale_detail" Type="Self.Sale_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sale_detail">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sale_details_sales">
+          <End Role="Sale" Type="Self.Sale" Multiplicity="1" />
+          <End Role="Sale_detail" Type="Self.Sale_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sale_detail">
+              <PropertyRef Name="sale_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sales_users">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_employees">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_user_types">
+          <End Role="User_type" Type="Self.User_type" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="user_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="posModelStoreContainer">
+          <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Card" EntityType="Self.Card" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee_detail" EntityType="Self.Employee_detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee_status" EntityType="Self.Employee_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment_status" EntityType="Self.Payment_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment_type" EntityType="Self.Payment_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product_department" EntityType="Self.Product_department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sale_detail" EntityType="Self.Sale_detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shift" EntityType="Self.Shift" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_type" EntityType="Self.User_type" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_employee_detail_employee" Association="Self.FK_employee_detail_employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Employee_detail" EntitySet="Employee_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employee_details_employee_statuses" Association="Self.FK_employee_details_employee_statuses">
+            <End Role="Employee_status" EntitySet="Employee_status" />
+            <End Role="Employee_detail" EntitySet="Employee_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employee_details_shifts" Association="Self.FK_employee_details_shifts">
+            <End Role="Shift" EntitySet="Shift" />
+            <End Role="Employee_detail" EntitySet="Employee_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employee_details_titles" Association="Self.FK_employee_details_titles">
+            <End Role="Title" EntitySet="Title" />
+            <End Role="Employee_detail" EntitySet="Employee_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inventory_products" Association="Self.FK_inventory_products">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_brands" Association="Self.FK_products_brands">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_product_departments" Association="Self.FK_products_product_departments">
+            <End Role="Product_department" EntitySet="Product_department" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sale_details_payment_statuses" Association="Self.FK_sale_details_payment_statuses">
+            <End Role="Payment_status" EntitySet="Payment_status" />
+            <End Role="Sale_detail" EntitySet="Sale_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sale_details_payment_types" Association="Self.FK_sale_details_payment_types">
+            <End Role="Payment_type" EntitySet="Payment_type" />
+            <End Role="Sale_detail" EntitySet="Sale_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sale_details_products" Association="Self.FK_sale_details_products">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Sale_detail" EntitySet="Sale_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sale_details_sales" Association="Self.FK_sale_details_sales">
+            <End Role="Sale" EntitySet="Sale" />
+            <End Role="Sale_detail" EntitySet="Sale_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sales_users" Association="Self.FK_sales_users">
+            <End Role="User" EntitySet="User" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_employees" Association="Self.FK_users_employees">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_user_types" Association="Self.FK_users_user_types">
+            <End Role="User_type" EntitySet="User_type" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="posModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="brand1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_products_brands" FromRole="Brand" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="card_number" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="birthdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telephone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="hired_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Employee_detail" Relationship="Self.FK_employee_detail_employee" FromRole="Employee" ToRole="Employee_detail" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_users_employees" FromRole="Employee" ToRole="User" />
+          <NavigationProperty Name="Users1" Relationship="posModel.FK_users_employees1" FromRole="Employee" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Employee_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title_id" Type="Int32" Nullable="false" />
+          <Property Name="shift_id" Type="Int32" Nullable="false" />
+          <Property Name="status_id" Type="Int32" Nullable="false" />
+          <Property Name="employee_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_employee_detail_employee" FromRole="Employee_detail" ToRole="Employee" />
+          <NavigationProperty Name="Employee_status" Relationship="Self.FK_employee_details_employee_statuses" FromRole="Employee_detail" ToRole="Employee_status" />
+          <NavigationProperty Name="Shift" Relationship="Self.FK_employee_details_shifts" FromRole="Employee_detail" ToRole="Shift" />
+          <NavigationProperty Name="Title" Relationship="Self.FK_employee_details_titles" FromRole="Employee_detail" ToRole="Title" />
+        </EntityType>
+        <EntityType Name="Employee_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee_detail" Relationship="Self.FK_employee_details_employee_statuses" FromRole="Employee_status" ToRole="Employee_detail" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_inventory_products" FromRole="Inventory" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Payment_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pay_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Sale_detail" Relationship="Self.FK_sale_details_payment_statuses" FromRole="Payment_status" ToRole="Sale_detail" />
+        </EntityType>
+        <EntityType Name="Payment_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pay_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Sale_detail" Relationship="Self.FK_sale_details_payment_types" FromRole="Payment_type" ToRole="Sale_detail" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="brand_id" Type="Int32" Nullable="false" />
+          <Property Name="department_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Brand" Relationship="Self.FK_products_brands" FromRole="Product" ToRole="Brand" />
+          <NavigationProperty Name="Inventories" Relationship="Self.FK_inventory_products" FromRole="Product" ToRole="Inventory" />
+          <NavigationProperty Name="Product_department" Relationship="Self.FK_products_product_departments" FromRole="Product" ToRole="Product_department" />
+          <NavigationProperty Name="Sale_detail" Relationship="Self.FK_sale_details_products" FromRole="Product" ToRole="Sale_detail" />
+        </EntityType>
+        <EntityType Name="Product_department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="department_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_products_product_departments" FromRole="Product_department" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sale_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Sale_detail" Relationship="Self.FK_sale_details_sales" FromRole="Sale" ToRole="Sale_detail" />
+          <NavigationProperty Name="User" Relationship="Self.FK_sales_users" FromRole="Sale" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Sale_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sale_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="payment_type_id" Type="Int32" Nullable="false" />
+          <Property Name="payment_status_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Payment_status" Relationship="Self.FK_sale_details_payment_statuses" FromRole="Sale_detail" ToRole="Payment_status" />
+          <NavigationProperty Name="Payment_type" Relationship="Self.FK_sale_details_payment_types" FromRole="Sale_detail" ToRole="Payment_type" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_sale_details_products" FromRole="Sale_detail" ToRole="Product" />
+          <NavigationProperty Name="Sale" Relationship="Self.FK_sale_details_sales" FromRole="Sale_detail" ToRole="Sale" />
+        </EntityType>
+        <EntityType Name="Shift">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="in_time" Type="Time" Nullable="false" Precision="5" />
+          <Property Name="out_time" Type="Time" Nullable="false" Precision="5" />
+          <NavigationProperty Name="Employee_detail" Relationship="Self.FK_employee_details_shifts" FromRole="Shift" ToRole="Employee_detail" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee_detail" Relationship="Self.FK_employee_details_titles" FromRole="Title" ToRole="Employee_detail" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_type_id" Type="Int32" Nullable="false" />
+          <Property Name="employee_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_users_employees" FromRole="User" ToRole="Employee" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK_sales_users" FromRole="User" ToRole="Sale" />
+          <NavigationProperty Name="User_type" Relationship="Self.FK_users_user_types" FromRole="User" ToRole="User_type" />
+          <NavigationProperty Name="Employee1" Relationship="posModel.FK_users_employees1" FromRole="User" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="User_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usr_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_users_user_types" FromRole="User_type" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_products_brands">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="brand_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employee_detail_employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee_detail" Type="Self.Employee_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employee_detail">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_employees">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="user_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employee_details_employee_statuses">
+          <End Role="Employee_status" Type="Self.Employee_status" Multiplicity="1" />
+          <End Role="Employee_detail" Type="Self.Employee_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employee_detail">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employee_details_shifts">
+          <End Role="Shift" Type="Self.Shift" Multiplicity="1" />
+          <End Role="Employee_detail" Type="Self.Employee_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employee_detail">
+              <PropertyRef Name="shift_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employee_details_titles">
+          <End Role="Title" Type="Self.Title" Multiplicity="1" />
+          <End Role="Employee_detail" Type="Self.Employee_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Title">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employee_detail">
+              <PropertyRef Name="title_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_inventory_products">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sale_details_payment_statuses">
+          <End Role="Payment_status" Type="Self.Payment_status" Multiplicity="1" />
+          <End Role="Sale_detail" Type="Self.Sale_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sale_detail">
+              <PropertyRef Name="payment_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sale_details_payment_types">
+          <End Role="Payment_type" Type="Self.Payment_type" Multiplicity="1" />
+          <End Role="Sale_detail" Type="Self.Sale_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sale_detail">
+              <PropertyRef Name="payment_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_product_departments">
+          <End Role="Product_department" Type="Self.Product_department" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_department">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sale_details_products">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Sale_detail" Type="Self.Sale_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sale_detail">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sale_details_sales">
+          <End Role="Sale" Type="Self.Sale" Multiplicity="1" />
+          <End Role="Sale_detail" Type="Self.Sale_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sale_detail">
+              <PropertyRef Name="sale_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sales_users">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_user_types">
+          <End Role="User_type" Type="Self.User_type" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="user_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="posEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Brands" EntityType="Self.Brand" />
+          <EntitySet Name="Cards" EntityType="Self.Card" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Employee_detail" EntityType="Self.Employee_detail" />
+          <EntitySet Name="Employee_status" EntityType="Self.Employee_status" />
+          <EntitySet Name="Inventories" EntityType="Self.Inventory" />
+          <EntitySet Name="Payment_status" EntityType="Self.Payment_status" />
+          <EntitySet Name="Payment_type" EntityType="Self.Payment_type" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Product_department" EntityType="Self.Product_department" />
+          <EntitySet Name="Sales" EntityType="Self.Sale" />
+          <EntitySet Name="Sale_detail" EntityType="Self.Sale_detail" />
+          <EntitySet Name="Shifts" EntityType="Self.Shift" />
+          <EntitySet Name="Titles" EntityType="Self.Title" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="User_type" EntityType="Self.User_type" />
+          <AssociationSet Name="FK_products_brands" Association="Self.FK_products_brands">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employee_detail_employee" Association="Self.FK_employee_detail_employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Employee_detail" EntitySet="Employee_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_employees" Association="Self.FK_users_employees">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employee_details_employee_statuses" Association="Self.FK_employee_details_employee_statuses">
+            <End Role="Employee_status" EntitySet="Employee_status" />
+            <End Role="Employee_detail" EntitySet="Employee_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employee_details_shifts" Association="Self.FK_employee_details_shifts">
+            <End Role="Shift" EntitySet="Shifts" />
+            <End Role="Employee_detail" EntitySet="Employee_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employee_details_titles" Association="Self.FK_employee_details_titles">
+            <End Role="Title" EntitySet="Titles" />
+            <End Role="Employee_detail" EntitySet="Employee_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_inventory_products" Association="Self.FK_inventory_products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Inventory" EntitySet="Inventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sale_details_payment_statuses" Association="Self.FK_sale_details_payment_statuses">
+            <End Role="Payment_status" EntitySet="Payment_status" />
+            <End Role="Sale_detail" EntitySet="Sale_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sale_details_payment_types" Association="Self.FK_sale_details_payment_types">
+            <End Role="Payment_type" EntitySet="Payment_type" />
+            <End Role="Sale_detail" EntitySet="Sale_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_product_departments" Association="Self.FK_products_product_departments">
+            <End Role="Product_department" EntitySet="Product_department" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sale_details_products" Association="Self.FK_sale_details_products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Sale_detail" EntitySet="Sale_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sale_details_sales" Association="Self.FK_sale_details_sales">
+            <End Role="Sale" EntitySet="Sales" />
+            <End Role="Sale_detail" EntitySet="Sale_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sales_users" Association="Self.FK_sales_users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_user_types" Association="Self.FK_users_user_types">
+            <End Role="User_type" EntitySet="User_type" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_employees1" Association="posModel.FK_users_employees1">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_users_employees1">
+          <End Type="posModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="posModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="posModelStoreContainer" CdmEntityContainer="posEntities">
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="posModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="brand1" ColumnName="brand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cards">
+            <EntityTypeMapping TypeName="posModel.Card">
+              <MappingFragment StoreEntitySet="Card">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="card_number" ColumnName="card_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="posModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="hired_date" ColumnName="hired_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee_detail">
+            <EntityTypeMapping TypeName="posModel.Employee_detail">
+              <MappingFragment StoreEntitySet="Employee_detail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title_id" ColumnName="title_id" />
+                <ScalarProperty Name="shift_id" ColumnName="shift_id" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee_status">
+            <EntityTypeMapping TypeName="posModel.Employee_status">
+              <MappingFragment StoreEntitySet="Employee_status">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="emp_status" ColumnName="emp_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventories">
+            <EntityTypeMapping TypeName="posModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payment_status">
+            <EntityTypeMapping TypeName="posModel.Payment_status">
+              <MappingFragment StoreEntitySet="Payment_status">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="pay_status" ColumnName="pay_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payment_type">
+            <EntityTypeMapping TypeName="posModel.Payment_type">
+              <MappingFragment StoreEntitySet="Payment_type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="pay_type" ColumnName="pay_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="posModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="brand_id" ColumnName="brand_id" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product_department">
+            <EntityTypeMapping TypeName="posModel.Product_department">
+              <MappingFragment StoreEntitySet="Product_department">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="posModel.Sale">
+              <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sale_datetime" ColumnName="sale_datetime" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sale_detail">
+            <EntityTypeMapping TypeName="posModel.Sale_detail">
+              <MappingFragment StoreEntitySet="Sale_detail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sale_id" ColumnName="sale_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="payment_type_id" ColumnName="payment_type_id" />
+                <ScalarProperty Name="payment_status_id" ColumnName="payment_status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shifts">
+            <EntityTypeMapping TypeName="posModel.Shift">
+              <MappingFragment StoreEntitySet="Shift">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="in_time" ColumnName="in_time" />
+                <ScalarProperty Name="out_time" ColumnName="out_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Titles">
+            <EntityTypeMapping TypeName="posModel.Title">
+              <MappingFragment StoreEntitySet="Title">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title1" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="posModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user_type_id" ColumnName="user_type_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_type">
+            <EntityTypeMapping TypeName="posModel.User_type">
+              <MappingFragment StoreEntitySet="User_type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="usr_type" ColumnName="usr_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
