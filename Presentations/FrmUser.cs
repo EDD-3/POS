@@ -25,12 +25,17 @@ namespace ProjectSale.Presentations
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnNewProduct_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnSubmitSale_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancelSale_Click(object sender, EventArgs e)
         {
 
         }

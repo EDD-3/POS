@@ -23,5 +23,10 @@ namespace ProjectSale.Presentations
         {
 
         }
+
+        private void btnAuthorize_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

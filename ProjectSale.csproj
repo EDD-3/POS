@@ -159,6 +159,18 @@
     <Compile Include="Presentations\FrmNewEmployee.Designer.cs">
       <DependentUpon>FrmNewEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentations\FrmNewProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentations\FrmNewProduct.Designer.cs">
+      <DependentUpon>FrmNewProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentations\FrmNewStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentations\FrmNewStock.Designer.cs">
+      <DependentUpon>FrmNewStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentations\FrmNewUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,11 +183,35 @@
     <Compile Include="Presentations\FrmSupervisor.Designer.cs">
       <DependentUpon>FrmSupervisor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentations\FrmSupervisorDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentations\FrmSupervisorDashboard.Designer.cs">
+      <DependentUpon>FrmSupervisorDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentations\FrmTableEmployees.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentations\FrmTableEmployees.Designer.cs">
       <DependentUpon>FrmTableEmployees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentations\FrmTableProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentations\FrmTableProducts.Designer.cs">
+      <DependentUpon>FrmTableProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentations\FrmTableSales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentations\FrmTableSales.Designer.cs">
+      <DependentUpon>FrmTableSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentations\FrmTableStocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentations\FrmTableStocks.Designer.cs">
+      <DependentUpon>FrmTableStocks.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentations\FrmTableUsers.cs">
       <SubType>Form</SubType>
@@ -200,14 +236,32 @@
     <EmbeddedResource Include="Presentations\FrmNewEmployee.resx">
       <DependentUpon>FrmNewEmployee.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentations\FrmNewProduct.resx">
+      <DependentUpon>FrmNewProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentations\FrmNewStock.resx">
+      <DependentUpon>FrmNewStock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentations\FrmNewUser.resx">
       <DependentUpon>FrmNewUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentations\FrmSupervisor.resx">
       <DependentUpon>FrmSupervisor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentations\FrmSupervisorDashboard.resx">
+      <DependentUpon>FrmSupervisorDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentations\FrmTableEmployees.resx">
       <DependentUpon>FrmTableEmployees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentations\FrmTableProducts.resx">
+      <DependentUpon>FrmTableProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentations\FrmTableSales.resx">
+      <DependentUpon>FrmTableSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentations\FrmTableStocks.resx">
+      <DependentUpon>FrmTableStocks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentations\FrmTableUsers.resx">
       <DependentUpon>FrmTableUsers.cs</DependentUpon>

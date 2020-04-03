@@ -36,6 +36,8 @@
             this.lblUser = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblTotalSale = new System.Windows.Forms.Label();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.btnRemoveProduct = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbxProducts
@@ -55,7 +57,7 @@
             this.btnNewProduct.TabIndex = 1;
             this.btnNewProduct.Text = "Registrar Producto";
             this.btnNewProduct.UseVisualStyleBackColor = true;
-            this.btnNewProduct.Click += new System.EventHandler(this.button1_Click);
+            this.btnNewProduct.Click += new System.EventHandler(this.btnNewProduct_Click);
             // 
             // btnCancelSale
             // 
@@ -65,6 +67,7 @@
             this.btnCancelSale.TabIndex = 2;
             this.btnCancelSale.Text = "Cancelar Venta";
             this.btnCancelSale.UseVisualStyleBackColor = true;
+            this.btnCancelSale.Click += new System.EventHandler(this.btnCancelSale_Click);
             // 
             // btnSubmitSale
             // 
@@ -74,7 +77,7 @@
             this.btnSubmitSale.TabIndex = 3;
             this.btnSubmitSale.Text = "Finalizar Venta";
             this.btnSubmitSale.UseVisualStyleBackColor = true;
-            this.btnSubmitSale.Click += new System.EventHandler(this.button3_Click);
+            this.btnSubmitSale.Click += new System.EventHandler(this.btnSubmitSale_Click);
             // 
             // label1
             // 
@@ -82,7 +85,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 359);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 39);
+            this.label1.Size = new System.Drawing.Size(130, 38);
             this.label1.TabIndex = 4;
             this.label1.Text = "Usuario";
             // 
@@ -102,7 +105,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 514);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 39);
+            this.label2.Size = new System.Drawing.Size(116, 38);
             this.label2.TabIndex = 6;
             this.label2.Text = "Total $";
             // 
@@ -116,11 +119,31 @@
             this.lblTotalSale.TabIndex = 7;
             this.lblTotalSale.Text = "total";
             // 
+            // btnLogout
+            // 
+            this.btnLogout.Location = new System.Drawing.Point(21, 90);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(94, 54);
+            this.btnLogout.TabIndex = 8;
+            this.btnLogout.Text = "Cerrar Sesión";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveProduct
+            // 
+            this.btnRemoveProduct.Location = new System.Drawing.Point(216, 90);
+            this.btnRemoveProduct.Name = "btnRemoveProduct";
+            this.btnRemoveProduct.Size = new System.Drawing.Size(79, 53);
+            this.btnRemoveProduct.TabIndex = 9;
+            this.btnRemoveProduct.Text = "Retirar Producto";
+            this.btnRemoveProduct.UseVisualStyleBackColor = true;
+            // 
             // FrmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 738);
+            this.Controls.Add(this.btnRemoveProduct);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.lblTotalSale);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblUser);
@@ -147,5 +170,7 @@
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblTotalSale;
+        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnRemoveProduct;
     }
 }
